@@ -1,4 +1,5 @@
 #!/bin/bash -eu
+set -o pipefail
 
 nullsha="0000000000000000000000000000000000000000"
 maxsize=5
