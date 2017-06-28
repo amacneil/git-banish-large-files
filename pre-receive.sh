@@ -2,7 +2,15 @@
 set -o pipefail
 
 nullsha="0000000000000000000000000000000000000000"
-maxsize=5
+
+# File size limit is meant to be configured through 'hooks.filesizelimit' setting
+maxsize=$(git config hooks.filesizelimit)
+
+# If we haven't configured a file size limit, use default value of about 100M
+if [ -z "$filesizelimit" ]; then
+        maxsize=100
+fi
+
 maxbytes=$(( $maxsize * 1024 * 1024 ))
 status=0
 
