@@ -32,7 +32,7 @@ while read oldref newref refname; do
     awk 'BEGIN{sum=0}{sum=sum+$3}END{print sum}');
 
     # Display error header
-    if ["$sizeofpush" -ge "$maxbytes"] && [ "$status" -eq "0" ]; then
+    if [ "$sizeofpush" -ge "$maxbytes" ] && [ "$status" -eq "0" ]; then
         status=1
         
         echo ""
