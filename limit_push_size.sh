@@ -30,8 +30,8 @@ while read oldref newref refname; do
     sizeofpush=$(git rev-list --objects ${oldref}..${newref} | \
         git cat-file --batch-check='%(objectname) %(objecttype) %(objectsize) %(rest)' | \
     awk 'BEGIN{sum=0}{sum=sum+$3}END{print sum}');
-    
-    # Display error header if this is the first offending file
+
+    # Display error header
     if ["$sizeofpush" -ge "$maxbytes"] && [ "$status" -eq "0" ]; then
         status=1
         
