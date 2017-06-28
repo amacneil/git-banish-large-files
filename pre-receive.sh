@@ -7,7 +7,7 @@ nullsha="0000000000000000000000000000000000000000"
 maxsize=$(git config hooks.filesizelimit)
 
 # If we haven't configured a file size limit, use default value of about 100M
-if [ -z "$filesizelimit" ]; then
+if [ -z "$maxsize" ]; then
         maxsize=100
 fi
 
