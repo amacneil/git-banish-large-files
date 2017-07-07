@@ -27,9 +27,13 @@ while read oldref newref refname; do
     fi
     
     #sum of size of all objects
-    sizeofpush=$(git rev-list --objects ${oldref}..${newref} | \
-        git cat-file --batch-check='%(objectname) %(objecttype) %(objectsize) %(rest)' | \
-	awk 'BEGIN{sum=0}{sum=sum+$3}END{print sum}')
+    # sizeofpush=$(git rev-list --objects ${oldref}..${newref} | \
+    #     git cat-file --batch-check='%(objectname) %(objecttype) %(objectsize) %(rest)' | \
+	# awk 'BEGIN{sum=0}{sum=sum+$3}END{print sum}')
+    #size of a pack of objects
+    sizeofpush=$(echo ${oldref}..${newref} | \
+     git pack-objects --revs --thin --stdout -q | \
+      wc -c)
 
     echo "push size: $sizeofpush bytes"
 
